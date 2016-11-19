@@ -1,0 +1,12 @@
+Source: ros-indigo-fiducial-lib
+Section: misc
+Priority: extra
+Maintainer: Wayne Gramlich <wayne@gramlich.net>
+Build-Depends: debhelper (>= 9.0.0), libopencv-dev, ros-indigo-angles, ros-indigo-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-fiducial-lib
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-angles
+Description: The fiducials package
