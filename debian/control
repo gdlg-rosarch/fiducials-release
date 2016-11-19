@@ -1,0 +1,12 @@
+Source: ros-indigo-fiducials
+Section: misc
+Priority: extra
+Maintainer: Jim Vaughan <jimv@mrjim.com>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-fiducials
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-fiducial-detect, ros-indigo-fiducial-lib, ros-indigo-fiducial-pose, ros-indigo-fiducial-slam
+Description: The fiducials package
