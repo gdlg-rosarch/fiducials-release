@@ -1,0 +1,12 @@
+Source: ros-kinetic-fiducial-lib
+Section: misc
+Priority: extra
+Maintainer: Wayne Gramlich <wayne@gramlich.net>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-angles, ros-kinetic-catkin, ros-kinetic-opencv3
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-fiducial-lib
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-angles
+Description: The fiducials package
