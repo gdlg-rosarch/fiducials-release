@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>fiducials</name>
-  <version>0.1.2</version>
+  <version>0.0.2</version>
   <description>The fiducials package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
@@ -40,7 +40,6 @@
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
 
-  <exec_depend>aruco_detect</exec_depend>
   <exec_depend>fiducial_detect</exec_depend>
   <exec_depend>fiducial_lib</exec_depend>
   <exec_depend>fiducial_pose</exec_depend>
