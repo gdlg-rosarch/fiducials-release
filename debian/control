@@ -1,0 +1,12 @@
+Source: ros-indigo-fiducial-detect
+Section: misc
+Priority: extra
+Maintainer: Jim Vaughan <jimv@mrjim.com>
+Build-Depends: debhelper (>= 9.0.0), libopencv-dev, ros-indigo-catkin, ros-indigo-cv-bridge, ros-indigo-fiducial-lib, ros-indigo-fiducial-pose, ros-indigo-image-transport, ros-indigo-orocos-kdl, ros-indigo-roscpp, ros-indigo-sensor-msgs, ros-indigo-tf2, ros-indigo-tf2-geometry-msgs, ros-indigo-tf2-ros, ros-indigo-visualization-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-indigo-fiducial-detect
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-cv-bridge, ros-indigo-image-transport, ros-indigo-orocos-kdl, ros-indigo-roscpp, ros-indigo-sensor-msgs, ros-indigo-tf2, ros-indigo-tf2-geometry-msgs, ros-indigo-tf2-ros, ros-indigo-visualization-msgs
+Description: The fiducials_ros package
