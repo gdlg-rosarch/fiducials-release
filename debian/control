@@ -1,0 +1,12 @@
+Source: ros-kinetic-fiducial-detect
+Section: misc
+Priority: extra
+Maintainer: Jim Vaughan <jimv@mrjim.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin, ros-kinetic-compressed-image-transport, ros-kinetic-cv-bridge, ros-kinetic-fiducial-lib, ros-kinetic-fiducial-pose, ros-kinetic-image-transport, ros-kinetic-orocos-kdl, ros-kinetic-roscpp, ros-kinetic-rostest, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf2, ros-kinetic-tf2-geometry-msgs, ros-kinetic-tf2-ros, ros-kinetic-visualization-msgs
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-fiducial-detect
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-compressed-image-transport, ros-kinetic-cv-bridge, ros-kinetic-fiducial-lib, ros-kinetic-fiducial-pose, ros-kinetic-image-transport, ros-kinetic-orocos-kdl, ros-kinetic-roscpp, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf2, ros-kinetic-tf2-geometry-msgs, ros-kinetic-tf2-ros, ros-kinetic-visualization-msgs
+Description: The fiducials_ros package
