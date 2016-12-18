@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>fiducial_detect</name>
-  <version>0.1.2</version>
+  <version>0.5.0</version>
   <description>The fiducials_ros package</description>
 
   <maintainer email="jimv@mrjim.com">Jim Vaughan</maintainer>
@@ -19,6 +19,7 @@
   <depend>tf2</depend>
   <depend>visualization_msgs</depend>
   <depend>image_transport</depend>
+  <depend>compressed_image_transport</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
   <depend>cv_bridge</depend>
@@ -26,4 +27,5 @@
   <depend>fiducial_lib</depend>
   <depend>fiducial_pose</depend>
 
+  <test_depend>rostest</test_depend>
 </package>
