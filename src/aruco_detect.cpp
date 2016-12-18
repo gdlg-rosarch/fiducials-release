@@ -77,10 +77,12 @@ class FiducialsNode {
     bool haveCamInfo;
     cv::Mat K;
     cv::Mat dist;
+    int frameNum;
+    std::string frameId;
   
     image_transport::Publisher image_pub;
 
-    aruco::DetectorParameters detectorParams;
+    cv::Ptr<aruco::DetectorParameters> detectorParams;
     cv::Ptr<aruco::Dictionary> dictionary;
 
     void imageCallback(const sensor_msgs::ImageConstPtr & msg);
@@ -108,15 +110,18 @@ void FiducialsNode::camInfoCallback(const sensor_msgs::CameraInfo::ConstPtr& msg
     }
 
     haveCamInfo = true;
+    frameId = msg->header.frame_id;
 }
 
 void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg) {
     ROS_INFO("Got image");
+    frameNum++;
 
     cv_bridge::CvImagePtr cv_ptr;
 
     fiducial_pose::FiducialTransformArray fta;
     fta.header.stamp = msg->header.stamp;
+    fta.header.frame_id = frameId;
     fta.image_seq = msg->header.seq;
 
     try {
@@ -126,11 +131,33 @@ void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg) {
         vector <vector <Point2f> > corners, rejected;
         vector <Vec3d>  rvecs, tvecs;
 
-        aruco::detectMarkers(cv_ptr->image, dictionary, corners, ids);
+        aruco::detectMarkers(cv_ptr->image, dictionary, corners, ids, detectorParams);
         ROS_INFO("Detectd %d markers", (int)ids.size());
  
+        for (int i=0; i<ids.size(); i++) {
+            fiducial_pose::Fiducial fid;
+            fid.header.stamp = msg->header.stamp;
+            fid.header.frame_id =frameId;
+            fid.image_seq = msg->header.seq;
+            fid.fiducial_id = ids[i];
+            
+            fid.x0 = corners[i][0].x;
+            fid.y0 = corners[i][0].y;
+            fid.x1 = corners[i][1].x;
+            fid.y1 = corners[i][1].y;
+            fid.x2 = corners[i][2].x;
+            fid.y2 = corners[i][2].y;
+            fid.x3 = corners[i][3].x;
+            fid.y3 = corners[i][3].y;
+
+            vertices_pub->publish(fid);
+        }
+
         if (!haveCamInfo) {
-            ROS_ERROR("No camera intrinsics");
+            if (frameNum > 5) {
+                ROS_ERROR("No camera intrinsics");
+            }
+            return;
         }
 
         aruco::estimatePoseSingleMarkers(corners, fiducial_len, K, dist, rvecs, tvecs);
@@ -165,10 +192,11 @@ void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg) {
             ft.transform.rotation.z = q.z();
 
             fta.transforms.push_back(ft);
+
         }
 
-        cv::imshow("image", cv_ptr->image);
-        cv::waitKey(2);
+        //cv::imshow("image", cv_ptr->image);
+        ////cv::waitKey(2);
 	image_pub.publish(cv_ptr->toImageMsg());
 
         pose_pub->publish(fta);
@@ -183,6 +211,8 @@ void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg) {
 
 FiducialsNode::FiducialsNode(ros::NodeHandle & nh) : it(nh)
 {
+    frameNum = 0;
+
     // Camera intrinsics
     K = cv::Mat::zeros(3, 3, CV_64F);
 
@@ -194,21 +224,21 @@ FiducialsNode::FiducialsNode(ros::NodeHandle & nh) : it(nh)
     nh.param<bool>("publish_images", publish_images, false);
     nh.param<double>("fiducial_len", fiducial_len, 0.14);
 
-    image_pub = it.advertise("fiducial_images", 1);
+    image_pub = it.advertise("/fiducial_images", 1);
 
-    vertices_pub = new ros::Publisher(nh.advertise<fiducial_pose::Fiducial>("vertices", 1));
+    vertices_pub = new ros::Publisher(nh.advertise<fiducial_pose::Fiducial>("/fiducial_vertices", 1));
 
-    pose_pub = new ros::Publisher(nh.advertise<fiducial_pose::FiducialTransformArray>("fiducial_transforms", 1)); 
+    pose_pub = new ros::Publisher(nh.advertise<fiducial_pose::FiducialTransformArray>("/fiducial_transforms", 1)); 
     
     dictionary = aruco::getPredefinedDictionary(aruco::DICT_5X5_1000);
 
-
-    detectorParams.doCornerRefinement = true;
+    detectorParams = new aruco::DetectorParameters();
+    detectorParams->doCornerRefinement = true;
 
     img_sub = it.subscribe("/camera", 1,
-                                      &FiducialsNode::imageCallback, this);
+                           &FiducialsNode::imageCallback, this);
 
-    caminfo_sub = nh.subscribe("camera_info", 1,
+    caminfo_sub = nh.subscribe("/camera_info", 1,
 			       &FiducialsNode::camInfoCallback, this);
 
     ROS_INFO("Aruco detection ready");
