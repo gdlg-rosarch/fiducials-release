@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   visualization_msgs
   image_transport
+  compressed_image_transport
   cv_bridge
   sensor_msgs
   std_msgs
@@ -46,3 +47,22 @@ install(TARGETS fiducial_detect
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+install(DIRECTORY launch/
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+) 
+
+###########
+## Tests ##
+###########
+
+if(CATKIN_ENABLE_TESTING)
+        find_package(rostest REQUIRED)
+
+        # Tests need c++11
+        add_definitions(-std=c++11)
+        
+        add_rostest_gtest(fiducial_images_test 
+          test/fiducial_images.test 
+          test/fiducial_images_test.cpp)
+        target_link_libraries(fiducial_images_test ${catkin_LIBRARIES})
+endif()

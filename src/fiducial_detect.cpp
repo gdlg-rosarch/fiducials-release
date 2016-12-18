@@ -68,6 +68,8 @@ class FiducialsNode {
     ros::Subscriber caminfo_sub;
     image_transport::Subscriber img_sub;
     bool processing_image;
+    int frameNum;
+    bool haveCamInfo;
   
     RosRpp * pose_est;
 
@@ -239,6 +241,9 @@ void FiducialsNode::fiducial_cb(int id, int direction, double world_diagonal,
     detected_fiducials.push_back(fid);
 
     if (estimate_pose) {
+        if (!haveCamInfo && frameNum < 5) {
+            return;
+        }
         fiducial_pose::FiducialTransform ft;
         geometry_msgs::Transform trans;
 	ft.transform = trans;
@@ -425,6 +430,9 @@ void FiducialsNode::camInfoCallback(const sensor_msgs::CameraInfo::ConstPtr& msg
     if (pose_est) {
         pose_est->camInfoCallback(msg);
     }
+    haveCamInfo = true;
+
+    last_camera_frame = msg->header.frame_id;
 }
 
 void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg)
@@ -446,14 +454,15 @@ void FiducialsNode::imageCallback(const sensor_msgs::ImageConstPtr & msg)
 void FiducialsNode::processImage(const sensor_msgs::ImageConstPtr & msg)
 {
     processing_image = true;
+    frameNum++;
 
-    last_camera_frame = msg->header.frame_id;
     last_image_seq = msg->header.seq;
     last_image_time = msg->header.stamp;
     ROS_INFO("Got image seq %d", last_image_seq);
 
     fiducialTransformArray.transforms.clear();
     fiducialTransformArray.header.stamp = msg->header.stamp;
+    fiducialTransformArray.header.frame_id = last_camera_frame;
     fiducialTransformArray.image_seq = msg->header.seq;
 
     try {
@@ -504,6 +513,8 @@ void FiducialsNode::processImage(const sensor_msgs::ImageConstPtr & msg)
 }
 
 FiducialsNode::FiducialsNode(ros::NodeHandle & nh) : scale(0.75), tf_sub(tf_buffer) {
+    frameNum = 0;
+    haveCamInfo = false;
     processing_image = false;
     update_thread = NULL;
     fiducial_namespace = "fiducials";
@@ -565,10 +576,10 @@ FiducialsNode::FiducialsNode(ros::NodeHandle & nh) : scale(0.75), tf_sub(tf_buff
         marker_pub = new ros::Publisher(nh.advertise<visualization_msgs::Marker>("fiducials", 1));
     }
    
-    vertices_pub = new ros::Publisher(nh.advertise<fiducial_pose::Fiducial>("vertices", 1));
+    vertices_pub = new ros::Publisher(nh.advertise<fiducial_pose::Fiducial>("/fiducial_vertices", 1));
 
     if (estimate_pose) {
-        pose_pub = new ros::Publisher(nh.advertise<fiducial_pose::FiducialTransformArray>("fiducial_transforms", 1)); 
+        pose_pub = new ros::Publisher(nh.advertise<fiducial_pose::FiducialTransformArray>("/fiducial_transforms", 1)); 
         pose_est = new RosRpp(fiducial_len, undistort_points);
     }
     else {
@@ -580,10 +591,10 @@ FiducialsNode::FiducialsNode(ros::NodeHandle & nh) : scale(0.75), tf_sub(tf_buff
 
     
 
-    img_sub = img_transport.subscribe("camera", 1,
+    img_sub = img_transport.subscribe("/camera", 1,
                                       &FiducialsNode::imageCallback, this);
 
-    caminfo_sub = nh.subscribe("camera_info", 1,
+    caminfo_sub = nh.subscribe("/camera_info", 1,
 			       &FiducialsNode::camInfoCallback, this);
 
     ROS_INFO("Fiducials Localization ready");
