@@ -1,20 +1,29 @@
+## aruco_detect aruco_detect
 
-# A node to detect aruco markers and send out their camera - marker transform
+This node finds aruco markers in images stream and publishes their vertices
+(corner points) and estimates 3D transforms from the camera to the fiducials.
+It is based on the [Aruco](http://docs.opencv.org/trunk/d5/dae/tutorial_aruco_detection.html)
+contributed module to OpenCV. It is an alternative to fiducial_detect
 
-## Building with indigo
+### Parameters
 
-Building this node under indigo is tricky becaue indigo is compiled against
-opencv 2.
-
-This is discussed here
-http://answers.ros.org/question/213925/opencv30-ros-indigo/?answer=213928#post-id-213928
-
-In order to build it under indigo
-
-cd catkin_ws/src
-git clone https://github.com/ros-perception/vision_opencv.git
-git clone https://github.com/ros-perception/image_common.git
-git clone https://github.com/ros-perception/image_transport_plugins
+* `fiducial_len` The length of one side of a fiducial in meters, used by the
+pose estimation.  Default 0.146.
 
 
-and then build it.
+### Published Topics
+
+
+* `/fiducial_vertices` A topic of type `fiducial_pose/Fiducial` messages with the detected
+fiducial vertices.
+
+
+* `/fiducial_transforms` A topic of type `fiducial_pose/FiducialTransform` messages 
+with the computed fiducial pose.
+
+#### Subscribed Topics
+
+* `camera` An `ImageTransport` of the images to be processed.
+
+* `camera_info` A topic of type `sensor_msgs/CameraInfo` messages with the camera
+intrinsic parameters.
