@@ -51,3 +51,19 @@ install(TARGETS aruco_detect
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+###########
+## Tests ##
+###########
+
+if(CATKIN_ENABLE_TESTING)
+        find_package(rostest REQUIRED)
+
+        # Tests need c++11
+        add_definitions(-std=c++11)
+        
+        add_rostest_gtest(aruco_images_test 
+          test/aruco_images.test 
+          test/aruco_images_test.cpp)
+        target_link_libraries(aruco_images_test ${catkin_LIBRARIES} ${OpenCV_LIBS})
+endif()
+
