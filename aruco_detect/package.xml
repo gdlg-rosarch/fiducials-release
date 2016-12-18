@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>fiducial_detect</name>
+  <name>aruco_detect</name>
   <version>0.5.0</version>
-  <description>The fiducials_ros package</description>
+  <description>Fiducial detection based on the aruco library</description>
 
   <maintainer email="jimv@mrjim.com">Jim Vaughan</maintainer>
   <maintainer email="send2arohan@gmail.com">Rohan Agrawal</maintainer>
 
   <license>BSD</license>
 
-  <author email="namniart@gmail.com">Austin Hendrix</author>
+  <author email="jimv@mrjim.com">Jim Vaughan</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
@@ -19,13 +19,9 @@
   <depend>tf2</depend>
   <depend>visualization_msgs</depend>
   <depend>image_transport</depend>
-  <depend>compressed_image_transport</depend>
   <depend>sensor_msgs</depend>
-  <depend>std_msgs</depend>
   <depend>cv_bridge</depend>
-  <depend>orocos_kdl</depend>
-  <depend>fiducial_lib</depend>
+  <depend>opencv3</depend>
   <depend>fiducial_pose</depend>
 
-  <test_depend>rostest</test_depend>
 </package>
