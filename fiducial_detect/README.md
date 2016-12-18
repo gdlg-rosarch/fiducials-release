@@ -1,25 +1,36 @@
-# fiducials_ros
+## fiducial_detect fiducial_detect
 
-A ROS library to expose some of the fiducials functionality as a ROS node for integration with the ROS navigation stack.
+This node finds fiducial markers in images stream and publishes their vertices
+(corner points) and estimates 3D transforms from the camera to the fiducials.
+It also has 2D SLAM built in.
 
-# Setup
+### Parameters
 
-Follow the setup instructions for the fiducials package; until my changes changes are merged, you'll want to check out my modified version of the fiducials repository: https://github.com/trainman419/fiducials
+* `estimate_pose` If `true`, 3D pose estimation is performed and fiducial
+transforms are published. Default `true`.
 
-Check this package out into your catkin workspace.
+* `fiducial_len` The length of one side of a fiducial in meters, used by the
+pose estimation.  Default 0.146.
 
-Build your catkin workspace with `catkin_make`
+* `undistort_points` If `false`, it is assumed that the input is an undistorted
+image, and the vertices are used directly to calculate the fiducial transform.
+If it is `true`, then the vertices are undistorted first. This is faster, but
+less accurate.  Default `false`.
 
-# Running the demo
 
-Source your devel space (install space isn't supported yet)
+### Published Topics
 
-    . catkin_ws/devel/setup.bash
 
-cd to the fiducials directory:
+* `/fiducial_vertices`  A topic of type `fiducial_pose/Fiducial` messages with the detected
+fiducial vertices.
 
-    cd catkin_ws/src/fiducials
 
-Run the demo:
+* `/fiducial_transforms` A topic of type `fiducial_pose/FiducialTransform` messages 
+with the computed fiducial pose.
 
-    rosrun fiducials_ros fiducials_localization _lens_calibration:=calibration/pg_3_6mm.txt dojo_3.6mm_6Oct2013/*.pnm
+### Subscribed Topics
+
+* `camera` An `ImageTransport` of the images to be processed.
+
+* `camera_info` A topic of `sensor_msgs/CameraInfo` messages with the camera
+intrinsic parameters.
