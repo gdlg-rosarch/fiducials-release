@@ -1,0 +1,9 @@
+ros-kinetic-aruco-detect (0.5.1-0wily) wily; urgency=high
+
+  * Install aruco_detect launch dir
+  * Use raw transport for aruco test
+  * Contributors: Rohan Agrawal
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 28 Dec 2016 08:00:00 -0000
+
+
