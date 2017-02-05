@@ -6,7 +6,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.h>
 
-#include <fiducial_pose/Fiducial.h>
+#include <fiducial_pose/FiducialArray.h>
 #include <fiducial_pose/FiducialTransformArray.h>
 
 class ArucoImagesTest : public ::testing::Test {
@@ -46,9 +46,9 @@ protected:
     CameraInfoPub.publish(c_info);
   }
 
-  void vertices_callback(const fiducial_pose::Fiducial& f) {
+  void vertices_callback(const fiducial_pose::FiducialArray& f) {
     got_vertices = true;
-    vertices = f;
+    fiducials = f;
   }
 
   ros::NodeHandle nh;
@@ -64,7 +64,7 @@ protected:
 
   // Set up subscribing
   bool got_vertices;
-  fiducial_pose::Fiducial vertices;
+  fiducial_pose::FiducialArray fiducials;
   ros::Subscriber vertices_sub;
 };
 
@@ -76,16 +76,19 @@ TEST_F(ArucoImagesTest, tag_01_d7_14cm) {
     loop_rate.sleep();
   }
 
+  ASSERT_LE(1, fiducials.fiducials.size());
+
+  const fiducial_pose::Fiducial& vertices = fiducials.fiducials[0];
   ASSERT_EQ(1, vertices.fiducial_id);
 
-  ASSERT_FLOAT_EQ(569.90051, vertices.x0);
-  ASSERT_FLOAT_EQ(201.55597, vertices.y0);
-  ASSERT_FLOAT_EQ(777.42371, vertices.x1);
+  ASSERT_FLOAT_EQ(569.89917, vertices.x0);
+  ASSERT_FLOAT_EQ(201.55890, vertices.y0);
+  ASSERT_FLOAT_EQ(777.42560, vertices.x1);
   ASSERT_FLOAT_EQ(206.85025, vertices.y1);
-  ASSERT_FLOAT_EQ(767.97260, vertices.x2);
-  ASSERT_FLOAT_EQ(415.38031, vertices.y2);
-  ASSERT_FLOAT_EQ(565.75153, vertices.x3);
-  ASSERT_FLOAT_EQ(409.24457, vertices.y3);
+  ASSERT_FLOAT_EQ(767.95856, vertices.x2);
+  ASSERT_FLOAT_EQ(415.37830, vertices.y2);
+  ASSERT_FLOAT_EQ(565.75311, vertices.x3);
+  ASSERT_FLOAT_EQ(409.24496, vertices.y3);
 }
 
 int main(int argc, char** argv)
