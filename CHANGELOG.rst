@@ -2,6 +2,11 @@
 Changelog for package aruco_detect
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2017-02-06)
+------------------
+* Fix dynamic_reconfigure build deps
+* Contributors: Jim Vaughan
+
 0.6.0 (2017-02-04)
 ------------------
 * moved documentation to ROS wiki
