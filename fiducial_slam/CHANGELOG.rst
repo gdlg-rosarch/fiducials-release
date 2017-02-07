@@ -2,6 +2,9 @@
 Changelog for package fiducial_slam
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2017-02-06)
+------------------
+
 0.6.0 (2017-02-04)
 ------------------
 * Split Python into separate files
