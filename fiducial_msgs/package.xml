@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>fiducial_pose</name>
+  <name>fiducial_msgs</name>
   <version>0.7.0</version>
-  <description>Library to estimate 3D pose with RosbustPlanarPose</description>
+  <description>Package containing message definitions for fiducials</description>
 
   <maintainer email="jimv@mrjim.com">Jim Vaughan</maintainer>
   <maintainer email="send2arohan@gmail.com">Rohan Agrawal</maintainer>
@@ -11,12 +11,14 @@
 
   <author email="jimv@mrjim.com">Jim Vaughan</author>
 
-  <depend>roscpp</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
   <depend>tf</depend>
-  <depend>opencv3</depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
 
   <buildtool_depend>catkin</buildtool_depend>
 </package>
