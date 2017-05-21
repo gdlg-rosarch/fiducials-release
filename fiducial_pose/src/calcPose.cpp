@@ -91,8 +91,8 @@ void undistortPoints(cv::Mat pts, cv::Mat K, cv::Mat dist, bool doUndistort)
 }
 
 
-bool RosRpp::fiducialCallback(fiducial_pose::Fiducial* msg,
-		       	      fiducial_pose::FiducialTransform* ft)
+bool RosRpp::fiducialCallback(fiducial_msgs::Fiducial* msg,
+		       	      fiducial_msgs::FiducialTransform* ft)
 {
   ROS_INFO("id %d direction %d", msg->fiducial_id, msg->direction);
 
@@ -255,7 +255,7 @@ bool RosRpp::fiducialCallback(fiducial_pose::Fiducial* msg,
 
   tf::Transform trans1(m1, t1);
 
-  frameTransforms[msg->fiducial_id] = trans1;
+  frameTransforms[msg->fiducial_id] = trans1.inverse();
   t1 = trans1.getOrigin();
   m1 = trans1.getBasis();
 
