@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>fiducial_pose</name>
-  <version>0.7.0</version>
+  <version>0.7.1</version>
   <description>Library to estimate 3D pose with RosbustPlanarPose</description>
 
   <maintainer email="jimv@mrjim.com">Jim Vaughan</maintainer>
@@ -15,6 +15,7 @@
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
+  <depend>fiducial_msgs</depend>
   <depend>tf</depend>
   <depend>opencv3</depend>
 
