@@ -2,6 +2,12 @@
 Changelog for package fiducial_detect
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.4 (2017-11-09)
+------------------
+* Add std=-c++-11 to build.
+* handle bad camera_info in fiducial detect
+* Contributors: Jim Vaughan, Rohan Agrawal
+
 0.7.3 (2017-07-16)
 ------------------
 
