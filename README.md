@@ -1,3 +1,33 @@
+## fiducials (kinetic) - 0.7.4-0
+
+The packages in the `fiducials` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release fiducials --track kinetic --rosdistro kinetic` on `Thu, 09 Nov 2017 08:46:03 -0000`
+
+These packages were released:
+- `aruco_detect`
+- `fiducial_detect`
+- `fiducial_lib`
+- `fiducial_msgs`
+- `fiducial_pose`
+- `fiducial_slam`
+- `fiducials`
+
+Version of package(s) in repository `fiducials`:
+
+- upstream repository: https://github.com/UbiquityRobotics/fiducials
+- release repository: https://github.com/UbiquityRobotics-release/fiducials-release.git
+- rosdistro version: `0.7.3-0`
+- old version: `0.7.3-0`
+- new version: `0.7.4-0`
+
+Versions of tools used:
+
+- bloom version: `0.6.1`
+- catkin_pkg version: `0.3.9`
+- rosdep version: `0.11.8`
+- rosdistro version: `0.6.2`
+- vcstools version: `0.1.39`
+
+
 ## fiducials (kinetic) - 0.7.3-0
 
 The packages in the `fiducials` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release fiducials --track kinetic --rosdistro kinetic` on `Mon, 17 Jul 2017 05:23:32 -0000`
