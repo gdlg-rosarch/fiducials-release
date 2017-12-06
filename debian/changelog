@@ -1,0 +1,77 @@
+ros-kinetic-fiducial-slam (0.7.5-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 06 Dec 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.7.4-0jessie) jessie; urgency=high
+
+  * Fix typos
+  * Log full 6DOF pose for ALL and MUL
+  * Pass previous rvec and tvec to solvePnP()
+  * Added (multi) pose estimation to fiducial_slam (disabled by default)
+  * Contributors: Jim Vaughan
+
+ -- Jim Vaughan <jimv@mrjim.com>  Thu, 09 Nov 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.7.3-0jessie) jessie; urgency=high
+
+  * Install launch files and fiducials.rviz
+  * add test of auto init
+  * Print out 6DOF camera pose
+  * Fix multiplication order bug in autoInit()
+  * Renamed some variables to be more clear
+  * Add publish_6dof_pose param to disable squashing of estimated robot pose
+  * Contributors: Jim Vaughan
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sun, 16 Jul 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.7.2-0jessie) jessie; urgency=high
+
+  * Using std::isnan() to stop Debian Jessie build errors
+  * Contributors: Jim Vaughan
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 24 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.7.1-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Mon, 22 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.7.0-0jessie) jessie; urgency=high
+
+  * Fix dependencies
+  * Make sure that the variance sent to rviz doesn't truncate to 0
+  * Rewrite the code in C++, kill the python
+  * Fiducial transforms are always camera->fiducial
+  * Moved all service and message definitions to fiducial_msgs
+  * Contributors: Jim Vaughan, Rohan Agrawal
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sun, 21 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.6.1-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Mon, 06 Feb 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.6.0-0jessie) jessie; urgency=high
+
+  * Split Python into separate files
+  * Ddded median filter option
+  * Better exception/handling
+  * Contributors: Jim Vaughan, Rohan Agrawal
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sat, 04 Feb 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-slam (0.5.1-0jessie) jessie; urgency=high
+
+  * Map pub srv (#36 <https://github.com/UbiquityRobotics/fiducials/issues/36>)
+    * Added publishing of map (#28 <https://github.com/UbiquityRobotics/fiducials/issues/28>) and reset service call (#35 <https://github.com/UbiquityRobotics/fiducials/issues/35>)
+    * Updated documentation
+  * Contributors: Jim Vaughan
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 28 Dec 2016 08:00:00 -0000
+
+
