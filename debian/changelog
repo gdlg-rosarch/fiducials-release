@@ -1,0 +1,60 @@
+ros-kinetic-fiducial-lib (0.7.5-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 06 Dec 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.7.4-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Thu, 09 Nov 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.7.3-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sun, 16 Jul 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.7.2-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 24 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.7.1-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Mon, 22 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.7.0-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sun, 21 May 2017 07:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.6.1-0jessie) jessie; urgency=high
+
+
+
+ -- Jim Vaughan <jimv@mrjim.com>  Mon, 06 Feb 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.6.0-0jessie) jessie; urgency=high
+
+  * moved documentation to ROS wiki
+  * Contributors: Jim Vaughan, Rohan Agrawal
+
+ -- Jim Vaughan <jimv@mrjim.com>  Sat, 04 Feb 2017 08:00:00 -0000
+
+ros-kinetic-fiducial-lib (0.5.1-0jessie) jessie; urgency=high
+
+  * Remove old configuration params
+  * Remove Tag and CameraTag completely
+  * Get rid of the slam stuff in fiducial_lib
+  * Delete unused executables from fiducial_lib
+  * Contributors: Rohan Agrawal
+
+ -- Jim Vaughan <jimv@mrjim.com>  Wed, 28 Dec 2016 08:00:00 -0000
+
+
