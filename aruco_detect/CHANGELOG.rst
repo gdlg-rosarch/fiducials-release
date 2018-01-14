@@ -2,6 +2,9 @@
 Changelog for package aruco_detect
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.0 (2018-01-14)
+------------------
+
 0.7.5 (2017-12-06)
 ------------------
 * Move create_markers.py to share directory
