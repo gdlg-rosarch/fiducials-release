@@ -2,6 +2,9 @@
 Changelog for package fiducials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.1 (2018-01-21)
+------------------
+
 0.8.0 (2018-01-14)
 ------------------
 * Remove old style fiducial code
