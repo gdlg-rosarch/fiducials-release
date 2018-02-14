@@ -2,6 +2,11 @@
 Changelog for package fiducial_slam
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.2 (2018-02-14)
+------------------
+* Add service call to clear the map
+* Contributors: Jim Vaughan
+
 0.8.1 (2018-01-21)
 ------------------
   Fixed fiducial_pose topic's ``frame_id`` from camera to map.
